@@ -5,13 +5,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CountComponent } from './count/count.component';
+import { OverviewComponent } from './overview/overview.component';
+import { CollapseComponent } from './collapse/collapse.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    CountComponent
+    CountComponent,
+    OverviewComponent,
+    CollapseComponent
   ],
   imports: [
     BrowserModule

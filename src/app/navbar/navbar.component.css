@@ -1,0 +1,7 @@
+.dash{
+    padding: 20px;
+    cursor: pointer;
+}
+.dash:hover{
+    text-decoration: underline;
+}
