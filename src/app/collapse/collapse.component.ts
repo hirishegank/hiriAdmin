@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collapse.component.css']
 })
 export class CollapseComponent implements OnInit {
-  public isCollapsed = false;
+  public isCollapsed1 = false;
+  public isCollapsed2 = false;
+  public isCollapsed3 = false;
+  public isCollapsed4 = false;
+  public isCollapsed5 = false;
   constructor() { }
 
   ngOnInit() {
