@@ -4,34 +4,38 @@
       <nav class="d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky" style="background-color: #22B573;color: white;padding-top: 80px;border-radius: 10px;">
            
-            <div style="padding-left: 30;margin-left: 50px;"> <img src="../../assets/avatar.png" style="border: 5px solid white; border-radius: 100%;"></div>
+            <div style="padding-left: 30;margin-left: 40px;"> <img src="../../assets/avatar.png" style="border: 5px solid white; border-radius: 100%;"></div>
         
-            <div style="padding-left: 30;margin-left: 27px;"><h3 class="dash">Hirishigan</h3></div>   
-
+            <h3 class="dash" style="text-align: center;">Hirishigan</h3>  
+            <h6 style="text-align: center;">{{date}}</h6>
           <ul class="nav flex-column">
-            <li class="nav-item dash">
+            <li class="nav-item dash" routerLink="overview">
                 <span data-feather="home"></span>
                 Overview <span class="sr-only">(current)</span>
             </li>
-            <li class="nav-item dash">  
+            <li class="nav-item dash" routerLink="Management">  
                 <span data-feather="file"></span>
                 Chef Management
             </li>
-            <li class="nav-item dash">
+            <li class="nav-item dash" routerLink="Review">
                 <span data-feather="shopping-cart"></span>
                 Review Management
             </li>
-            <li class="nav-item dash">
+            <li class="nav-item dash" routerLink="Reports">
                 <span data-feather="users"></span>
                 Download Reports
             </li>
-            <li class="nav-item dash">
+            <li class="nav-item dash" routerLink="Forecast">
+                <span data-feather="bar-chart-2"></span>
+                Forecast
+            </li>
+            <li class="nav-item dash" routerLink="Settings">
                 <span data-feather="bar-chart-2"></span>
                 Settings
             </li>
             <li class="nav-item dash">
                 <span data-feather="layers"></span>
-                <button type="button" class="btn btn-light">Logout</button>
+                <button type="button" class="btn btn-light" (click)="authService.logout()">Logout</button>
             </li>
           </ul>
   </div>

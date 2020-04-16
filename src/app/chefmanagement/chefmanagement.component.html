@@ -1,1 +1,239 @@
-<p>chefmanagement works!</p>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header" style="text-align: center;">
+      <h4 class="modal-title" id="modal-basic-title" >Add a new chef</h4>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="FirstName">First Name :</label>
+            <input type="text" class="form-control" placeholder="First name" id="FirstName">
+        </div>
+        <div class="form-group">
+            <label for="LastName">Last Name :</label>
+              <input type="text" class="form-control" placeholder="Last name" id="FirstName">
+          </div>
+          <div class="form-group">
+            <label for="Location">Location :</label>
+              <input type="text" class="form-control" placeholder="Location" id="FirstName">
+          </div>
+          <div class="form-group">
+            <label for="PhoneNumber">Phone Number :</label>
+              <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber">
+          </div>
+          <div class="form-group">
+            <label for="NICNumber">NIC Number :</label>
+              <input type="text" class="form-control" placeholder="NIC Number" id="NICNumber">
+          </div>
+          <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-danger btn-small" style="width: 80%;" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">Cancel</span>
+                  </button>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                    <button type="button" class="btn btn-success btn-small" style="width: 80%;" (click)="modal.close('Save click')">Save</button>
+                  </div>
+              </div>
+          </div>
+         
+          
+      </form>
+    </div>
+</ng-template>
+
+
+<ng-template #delete let-modal>
+    <div class="modal-header" style="background-color: #838181;color: #ffffff;">
+      <h6 class="modal-title">Attention</h6>
+    </div>
+    <div class="modal-body">
+        <h6>Do you really want to delete this chef?</h6>
+        <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-danger btn-small" style="width: 80%;" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">Cancel</span>
+                </button>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                  <button type="button" class="btn btn-success btn-small" style="width: 80%;" (click)="modal.close('Save click')">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+  </ng-template>
+
+
+
+
+<div class="card" style="width: 100%;height: 200%;padding-top: 20px;">
+    <div class="card-title">
+        <div class="row">
+            <div class="col">
+                <h4 style="font-family: Product Sans;font-weight: bold;">List of Chefs</h4>
+            </div>
+            <div class="col">
+                <button class="btn btn-small btn-success" (click)="open(content)">+ Add Chef</button>
+            </div>
+        </div>
+         
+    </div>
+
+
+
+
+
+
+
+
+    <div>
+        <div class="row" style="padding-inline-start: 30;">
+        <div class="col" >
+            <hr>
+            <div class="card chef">
+                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;cursor: pointer;" (click)="opendel(delete)"></i>
+                <div class="card-body" style="text-align: center;">
+                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
+                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
+                        Saroja Devi
+                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
+            
+                        <div class="row">
+                            <div class="col">
+                                <p style="font-size: 10px;">Total orders</p><hr>
+                                <p>231</p>
+                            </div>
+                            <div class="col">
+                                <p style="font-size: 10px;">Active Months</p><hr>
+                                <p>02</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <hr>
+            <div class="card chef">
+                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
+                <div class="card-body" style="text-align: center;">
+                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
+                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
+                        Saroja Devi
+                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
+            
+                        <div class="row">
+                            <div class="col">
+                                <p style="font-size: 10px;">Total orders</p><hr>
+                                <p>231</p>
+                            </div>
+                            <div class="col">
+                                <p style="font-size: 10px;">Active Months</p><hr>
+                                <p>02</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col">
+            <hr>
+            <div class="card chef">
+                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
+                <div class="card-body" style="text-align: center;">
+                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
+                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
+                        Saroja Devi
+                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
+            
+                        <div class="row">
+                            <div class="col">
+                                <p style="font-size: 10px;">Total orders</p><hr>
+                                <p>231</p>
+                            </div>
+                            <div class="col">
+                                <p style="font-size: 10px;">Active Months</p><hr>
+                                <p>02</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col">
+            <hr>
+            <div class="card chef">
+                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
+                <div class="card-body" style="text-align: center;">
+                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
+                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
+                        Saroja Devi
+                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
+            
+                        <div class="row">
+                            <div class="col">
+                                <p style="font-size: 10px;">Total orders</p><hr>
+                                <p>231</p>
+                            </div>
+                            <div class="col">
+                                <p style="font-size: 10px;">Active Months</p><hr>
+                                <p>02</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col">
+            <hr>
+            <div class="card chef">
+                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
+                <div class="card-body" style="text-align: center;">
+                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
+                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
+                        Saroja Devi
+                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
+            
+                        <div class="row">
+                            <div class="col">
+                                <p style="font-size: 10px;">Total orders</p><hr>
+                                <p>231</p>
+                            </div>
+                            <div class="col">
+                                <p style="font-size: 10px;">Active Months</p><hr>
+                                <p>02</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+
+            
+            
+        </div>
+        
+
+    </div> 
+        
+</div>
+
+

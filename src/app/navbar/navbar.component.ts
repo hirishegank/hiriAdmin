@@ -1,4 +1,9 @@
+import { AuthenticationService } from './../authentication.service';
+import { from } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from 'firebase';
 
 @Component({
   selector: 'navbar',
@@ -7,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  date;
+  user: firebase.User;
+
+  constructor(public authService: AuthenticationService, private afAuth: AngularFireAuth) {
+   afAuth.authState.subscribe(user => this.user = user);
+   }
+   
 
   ngOnInit() {
+    this.date = formatDate(new Date(),'yyyy/MM/dd','en');
+    console.log(this.date);
   }
 
 }
