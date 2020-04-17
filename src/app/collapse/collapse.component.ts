@@ -43,7 +43,7 @@ export class CollapseComponent implements OnInit {
 
       
     // Bar chart:
-    this.BarChart = new Chart('barChartFood', {
+    this.BarChart = new Chart('barChartChef', {
       type: 'bar',
       data: {
         labels: this.popular_chefs,
@@ -56,7 +56,7 @@ export class CollapseComponent implements OnInit {
       },
       options: {
         title: {
-          text: "Most Popular Food",
+          text: "Most Popular Chef",
           display: true
         },
         scales: {
@@ -93,7 +93,7 @@ export class CollapseComponent implements OnInit {
     
 
        //chef
-    this.BarChart = new Chart('barChartChef', {
+    this.BarChart = new Chart('barChartFood', {
       type: 'bar',
       data: {
         labels: this.popular_foods,
@@ -106,7 +106,7 @@ export class CollapseComponent implements OnInit {
       },
       options: {
         title: {
-          text: "Most Popular chef",
+          text: "Most Popular Food",
           display: true
         },
         scales: {
