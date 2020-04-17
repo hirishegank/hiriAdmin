@@ -5,26 +5,26 @@
       <h4 class="modal-title" id="modal-basic-title" >Add a new chef</h4>
     </div>
     <div class="modal-body">
-      <form>
+      <form [formGroup]="chefForm">
         <div class="form-group">
           <label for="FirstName">First Name :</label>
-            <input type="text" class="form-control" placeholder="First name" id="FirstName">
+            <input type="text" formControlName="fname" class="form-control" placeholder="First name" id="FirstName" >
         </div>
         <div class="form-group">
             <label for="LastName">Last Name :</label>
-              <input type="text" class="form-control" placeholder="Last name" id="FirstName">
+              <input type="text" formControlName="lname" class="form-control" placeholder="Last name" id="FirstName">
           </div>
           <div class="form-group">
             <label for="Location">Location :</label>
-              <input type="text" class="form-control" placeholder="Location" id="FirstName">
+              <input type="text" formControlName="location" class="form-control" placeholder="Location" id="FirstName" >
           </div>
           <div class="form-group">
             <label for="PhoneNumber">Phone Number :</label>
-              <input type="text" class="form-control" placeholder="Phone Number" id="PhoneNumber">
+              <input type="text" formControlName="PhoneNumber" class="form-control" placeholder="Phone Number" id="PhoneNumber" >
           </div>
           <div class="form-group">
             <label for="NICNumber">NIC Number :</label>
-              <input type="text" class="form-control" placeholder="NIC Number" id="NICNumber">
+              <input type="text" formControlName="NICNumber"  class="form-control" placeholder="NIC Number" id="NICNumber">
           </div>
           <div class="row">
               <div class="col">
@@ -34,7 +34,7 @@
               </div>
               <div class="col">
                 <div class="form-group">
-                    <button type="button" class="btn btn-success btn-small" style="width: 80%;" (click)="modal.close('Save click')">Save</button>
+                    <button type="button" class="btn btn-success btn-small" style="width: 80%;" (click)="onSubmit()">Save</button>
                   </div>
               </div>
           </div>
@@ -92,141 +92,30 @@
 
     <div>
         <div class="row" style="padding-inline-start: 30;">
-        <div class="col" >
-            <hr>
-            <div class="card chef">
+         <hr>   
+        <div class="col" *ngFor="let chef of cheflist">
+            <div class="card chef"  *ngIf="chef.payload.doc.data().fname">
                 <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;cursor: pointer;" (click)="opendel(delete)"></i>
                 <div class="card-body" style="text-align: center;">
                     <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
                         <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
-                        Saroja Devi
-                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
+                            {{ chef.payload.doc.data().fname + ' '+ chef.payload.doc.data().lname }}
+                        <p style="color: #838181;font-size: 10px;">{{chef.payload.doc.data().location}}</p>
             
                         <div class="row">
                             <div class="col">
                                 <p style="font-size: 10px;">Total orders</p><hr>
-                                <p>231</p>
+                                <p>{{chef.payload.doc.data().orders}}</p>
                             </div>
                             <div class="col">
                                 <p style="font-size: 10px;">Active Months</p><hr>
-                                <p>02</p>
+                                <p>{{chef.payload.doc.data().active}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        <div class="col">
-            <hr>
-            <div class="card chef">
-                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
-                <div class="card-body" style="text-align: center;">
-                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
-                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
-                        Saroja Devi
-                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
-            
-                        <div class="row">
-                            <div class="col">
-                                <p style="font-size: 10px;">Total orders</p><hr>
-                                <p>231</p>
-                            </div>
-                            <div class="col">
-                                <p style="font-size: 10px;">Active Months</p><hr>
-                                <p>02</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col">
-            <hr>
-            <div class="card chef">
-                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
-                <div class="card-body" style="text-align: center;">
-                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
-                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
-                        Saroja Devi
-                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
-            
-                        <div class="row">
-                            <div class="col">
-                                <p style="font-size: 10px;">Total orders</p><hr>
-                                <p>231</p>
-                            </div>
-                            <div class="col">
-                                <p style="font-size: 10px;">Active Months</p><hr>
-                                <p>02</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="col">
-            <hr>
-            <div class="card chef">
-                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
-                <div class="card-body" style="text-align: center;">
-                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
-                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
-                        Saroja Devi
-                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
-            
-                        <div class="row">
-                            <div class="col">
-                                <p style="font-size: 10px;">Total orders</p><hr>
-                                <p>231</p>
-                            </div>
-                            <div class="col">
-                                <p style="font-size: 10px;">Active Months</p><hr>
-                                <p>02</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="col">
-            <hr>
-            <div class="card chef">
-                <i class="fas fa-trash-alt" style="color:red;padding: 10px;size: 5ex;"></i>
-                <div class="card-body" style="text-align: center;">
-                    <img class="imgchef" src="../../assets/chef1.png"  width="92px" height="92px">
-                        <div class="card-text" style="font-family: Product Sans;font-weight: bold;">
-                        Saroja Devi
-                        <p style="color: #838181;font-size: 10px;">Wellawatte</p>
-            
-                        <div class="row">
-                            <div class="col">
-                                <p style="font-size: 10px;">Total orders</p><hr>
-                                <p>231</p>
-                            </div>
-                            <div class="col">
-                                <p style="font-size: 10px;">Active Months</p><hr>
-                                <p>02</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            
-
             
             
         </div>

@@ -1,3 +1,5 @@
+import { ReportGenerationComponent } from './report-generation/report-generation.component';
+import { ReviewNlpComponent } from './review-nlp/review-nlp.component';
 import { LoginComponent } from './login/login.component';
 import { ForecastComponent } from './forecast/forecast.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -17,7 +19,9 @@ const routes: Routes = [
   { path: 'Reports', component: ReportComponent },
   { path: 'Forecast', component: ForecastComponent },
   { path: 'Settings', component: SettingsComponent },
-  { path: 'overview', component: OverviewComponent}
+  { path: 'overview', component: OverviewComponent },
+  { path: 'Review/reviewNlp', component: ReviewNlpComponent },
+  { path: 'Reports/generation', component:ReportGenerationComponent}
 ];
 
 @NgModule({

@@ -1,3 +1,4 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { from } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
@@ -8,24 +9,47 @@ import { Chart } from 'chart.js';
   styleUrls: ['./collapse.component.css']
 })
 export class CollapseComponent implements OnInit {
-  public isCollapsed1 = true;
-  public isCollapsed2 = true;
-  public isCollapsed3 = true;
-  public isCollapsed4 = true;
-  public isCollapsed5 = true;
-  BarChart=[];
+ 
+  BarChart = [];
   
+  popular_chefs = [];
+  popular_foods = [];
+  orders_of_chefs = [];
+  orders_of_foods = [];
+  
+  constructor(private afs: AngularFirestore){}
   
 
   ngOnInit() {
+
+    this.afs.collection('chef',res => res.limit(6))
+    .snapshotChanges().subscribe(serverItems => {
+      this.popular_chefs = [];
+      this.orders_of_chefs = [];
+      serverItems.forEach(a => {
+        let item:any = a.payload.doc.data();
+        item.id = a.payload.doc.id;
+        let id: any = a.payload.doc.id;
+        
+        this.afs.collection('orders', ref => ref.where('chef_id', '==', id)).valueChanges().subscribe(val => {
+          let temp = val.length + 100;
+          this.orders_of_chefs.push(temp);
+        });
+        this.popular_chefs.push(item.name);
+      });
+      console.log(this.popular_chefs);
+      console.log(this.orders_of_chefs);
+
+
+      
     // Bar chart:
     this.BarChart = new Chart('barChartFood', {
       type: 'bar',
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: this.popular_chefs,
         datasets: [{
           label: '# orders',
-          data: [9, 7, 3, 5, 2, 10],
+          data: this.orders_of_chefs,
           backgroundColor: 'rgb(34, 181, 115)',
           borderWidth: 1
         }]
@@ -44,18 +68,38 @@ export class CollapseComponent implements OnInit {
         }
       }
     });
+    });
 
 
 
 
-    //chef
+
+
+    this.afs.collection('food',res => res.limit(6))
+    .snapshotChanges().subscribe(serverItems => {
+      this.popular_chefs = [];
+      this.orders_of_chefs = [];
+      serverItems.forEach(a => {
+        let item:any = a.payload.doc.data();
+        item.id = a.payload.doc.id;
+        let id: any = a.payload.doc.id;
+        
+        this.afs.collection('orders', ref => ref.where('food_id', '==', id)).valueChanges().subscribe(val => {
+          let temp = val.length + 100;
+          this.orders_of_foods.push(temp);
+        });
+        this.popular_foods.push(item.food_name);
+      });
+    
+
+       //chef
     this.BarChart = new Chart('barChartChef', {
       type: 'bar',
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: this.popular_foods,
         datasets: [{
           label: '# orders',
-          data: [9, 7, 3, 5, 2, 10],
+          data: this.orders_of_foods,
           backgroundColor: 'rgb(34, 181, 115)',
           borderWidth: 1
         }]
@@ -74,6 +118,16 @@ export class CollapseComponent implements OnInit {
         }
       }
     });
+      
+
+    });
+    
+
+
+
+
+
+   
 
 
   }

@@ -1,3 +1,5 @@
+import { ManageChefServiceService } from './manage-chef-service.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthenticationService } from './authentication.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +23,8 @@ import { ForecastComponent } from './forecast/forecast.component';
 import { ReportComponent } from './report/report.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReviewComponent } from './review/review.component';
+import { ReviewNlpComponent } from './review-nlp/review-nlp.component';
+import { ReportGenerationComponent } from './report-generation/report-generation.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import { ReviewComponent } from './review/review.component';
     SettingsComponent,
     ForecastComponent,
     ReportComponent,
-    ReviewComponent
+    ReviewComponent,
+    ReviewNlpComponent,
+    ReportGenerationComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -49,7 +55,9 @@ import { ReviewComponent } from './review/review.component';
   providers: [
     NgModule,
     AuthenticationService,
+    ManageChefServiceService,
     AngularFireAuth,
+    AngularFirestore
   ],
   bootstrap: [AppComponent]
 })
