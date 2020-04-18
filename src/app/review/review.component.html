@@ -1,7 +1,7 @@
 <h4>Review Management</h4>
 
 <div class="row">
-    <div class="col">
+    <div class="col" *ngFor="let chef of chefs">
         <div class="card" style="width: 250px;border-radius: 15px;">
             <div class="card-body">
                 <div class="row">
@@ -19,116 +19,19 @@
                 </div>
                 
                 <div class="card-title" style="font-weight: bolder;text-align: center;">
-                    Nallaiya Karupusamy
+                    {{chef.name}}
                 </div>
-               <a routerLink="reviewNlp"><button class="btn btn-sm btn-success" >+ Add review</button></a> 
+               <a [routerLink]="['reviewNlp',chef.id]"><button class="btn btn-sm btn-success" >+ Add review</button></a> 
                 <h6>Your review :</h6><br>
                 <div class="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, 
-                    ratione nulla velit ad quam provident modi delectus consequatur fuga voluptatem dolore, 
-                    facere rerum maiores iure debitis nostrum veniam vel saepe.
+                   {{chef.admin_review}}
                 </div><br>
                 <h6>Your rating :   4.1</h6><br>
             </div>
         </div>
     </div>
 
-    <div class="col">
-        <div class="card" style="width: 250px;border-radius: 15px;">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
+   
 
-                    </div>
-                    <div class="col">
-                        <div class="card-image">
-                            <img src="../../assets/chef3.png" style="border-radius: 20px;">
-                        </div>
-                    </div>
-                    <div class="col">
-
-                    </div>
-                </div>
-                
-                <div class="card-title" style="font-weight: bolder;text-align: center;">
-                    Kopala Krishnan
-                </div>
-                <button class="btn btn-sm btn-success">+ Add review</button>
-                <h6>Your review :</h6><br>
-                <div class="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, 
-                    ratione nulla velit ad quam provident modi delectus consequatur fuga voluptatem dolore, 
-                    facere rerum maiores iure debitis nostrum veniam vel saepe.
-                </div><br>
-                <h6>Your rating :   4.1</h6><br>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col">
-        <div class="card" style="width: 250px;border-radius: 15px;">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-
-                    </div>
-                    <div class="col">
-                        <div class="card-image">
-                            <img src="../../assets/chef4.png" style="border-radius: 20px;">
-                        </div>
-                    </div>
-                    <div class="col">
-
-                    </div>
-                </div>
-                
-                <div class="card-title" style="font-weight: bolder;text-align: center;">
-                    Ram Kumar
-                </div>
-                <button class="btn btn-sm btn-success">+ Add review</button>
-                <h6>Your review :</h6><br>
-                <div class="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, 
-                    ratione nulla velit ad quam provident modi delectus consequatur fuga voluptatem dolore, 
-                    facere rerum maiores iure debitis nostrum veniam vel saepe.
-                </div><br>
-                <h6>Your rating :   4.1</h6><br>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col">
-        <div class="card" style="width: 250px;border-radius: 15px;">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-
-                    </div>
-                    <div class="col">
-                        <div class="card-image">
-                            <img src="../../assets/chef2.png" style="border-radius: 20px;">
-                        </div>
-                    </div>
-                    <div class="col">
-
-                    </div>
-                </div>
-                
-                <div class="card-title" style="font-weight: bolder;text-align: center;">
-                    Nallaiya Karupusamy
-                </div>
-                <button class="btn btn-sm btn-success">+ Add review</button>
-                <h6>Your review :</h6><br>
-                <div class="card-text">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, 
-                    ratione nulla velit ad quam provident modi delectus consequatur fuga voluptatem dolore, 
-                    facere rerum maiores iure debitis nostrum veniam vel saepe.
-                </div><br>
-                <h6>Your rating :   4.1</h6><br>
-            </div>
-        </div>
-    </div>
-
+    
 </div>

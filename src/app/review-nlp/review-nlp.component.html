@@ -10,7 +10,7 @@
                         </div>
                         <div class="col-md-8">
                             <br>
-                            <h6 style="color: grey;font-weight: bolder;">Nallaiya Karupusamy</h6>
+                            <h6 style="color: grey;font-weight: bolder;">{{chef.name}}</h6>
                             
                         </div>
                     </div>
@@ -20,11 +20,11 @@
                     <form [formGroup]="ReviewForm">
                         <div class="form-group">
                           <label for="FirstName">Your Review :</label>
-                            <textarea formControlName="review" class="form-control" style="height: 200px;border: 1PX solid #22B573;" placeholder="enter Review" id="FirstName" ></textarea>
+                            <textarea formControlName="admin_review" class="form-control" style="height: 200px;border: 1PX solid #22B573;" placeholder="enter Review" id="FirstName" ></textarea>
                         </div>
                         <div class="form-group">
                             <label for="LastName">Your Rating :</label>
-                              <input type="text" formControlName="rating" style="border: 1PX solid #22B573;" class="form-control" placeholder="Rating" id="FirstName">
+                              <input type="text" formControlName="admin_rating" style="border: 1PX solid #22B573;" class="form-control" placeholder="Rating" id="FirstName">
                           </div>
                           
                           <div class="row">
@@ -35,7 +35,7 @@
                               </div>
                               <div class="col">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm" style="width: 80%;" (click)="onSubmit()">Save</button>
+                                    <button type="submit" class="btn btn-success btn-sm" style="width: 80%;" (click)="update()">Save</button>
                                   </div>
                               </div>
                           </div>
@@ -53,129 +53,17 @@
         <div class="card">
             <h6 class="card-body" style="color: grey;font-weight: bolder;">Customer Reviews</h6>
             <hr>
-            <div class="card">
+            <div class="card" *ngFor="let review of chef.reviews">
                 <div class="card-body">
                     <div class="card-title" style="font-weight: bolder;">
-                        Customer Name
+                        {{review.customer}}
                     </div>
                     <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit voluptatum 
-                        laborum esse perferendis aperiam expedita eum praesentium aut,
-                         fugiat distinctio deserunt aspernatur amet harum ut modi nulla quo accusantium! Omnis!
+                        {{review.review_text}}
                     </div>
                     <div class="row">
                         <div class="col">
-                          <button type="button" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close">
-                              <span aria-hidden="true">Decline</span>
-                            </button>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                              <button type="button" class="btn btn-success btn-sm" style="width: 80%;" (click)="onSubmit()">Accept</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title" style="font-weight: bolder;">
-                        Customer Name
-                    </div>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit voluptatum 
-                        laborum esse perferendis aperiam expedita eum praesentium aut,
-                         fugiat distinctio deserunt aspernatur amet harum ut modi nulla quo accusantium! Omnis!
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <button type="button" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close">
-                              <span aria-hidden="true">Decline</span>
-                            </button>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                              <button type="button" class="btn btn-success btn-sm" style="width: 80%;" (click)="onSubmit()">Accept</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title" style="font-weight: bolder;">
-                        Customer Name
-                    </div>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit voluptatum 
-                        laborum esse perferendis aperiam expedita eum praesentium aut,
-                         fugiat distinctio deserunt aspernatur amet harum ut modi nulla quo accusantium! Omnis!
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <button type="button" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close">
-                              <span aria-hidden="true">Decline</span>
-                            </button>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                              <button type="button" class="btn btn-success btn-sm" style="width: 80%;" (click)="onSubmit()">Accept</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title" style="font-weight: bolder;">
-                        Customer Name
-                    </div>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit voluptatum 
-                        laborum esse perferendis aperiam expedita eum praesentium aut,
-                         fugiat distinctio deserunt aspernatur amet harum ut modi nulla quo accusantium! Omnis!
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <button type="button" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close">
-                              <span aria-hidden="true">Decline</span>
-                            </button>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                              <button type="button" class="btn btn-success btn-sm" style="width: 80%;" (click)="onSubmit()">Accept</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title" style="font-weight: bolder;">
-                        Customer Name
-                    </div>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit voluptatum 
-                        laborum esse perferendis aperiam expedita eum praesentium aut,
-                         fugiat distinctio deserunt aspernatur amet harum ut modi nulla quo accusantium! Omnis!
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <button type="button" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close">
+                          <button type="button" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close" (click)="Decline(review)">
                               <span aria-hidden="true">Decline</span>
                             </button>
                         </div>

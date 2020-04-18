@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'Forecast', component: ForecastComponent },
   { path: 'Settings', component: SettingsComponent },
   { path: 'overview', component: OverviewComponent },
-  { path: 'Review/reviewNlp', component: ReviewNlpComponent },
+  { path: 'Review/reviewNlp/:chefid', component: ReviewNlpComponent },
   { path: 'Reports/generation', component:ReportGenerationComponent}
 ];
 
