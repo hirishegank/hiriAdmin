@@ -1,80 +1,119 @@
 <h6 style="margin-top: 100px;">Review Management</h6>
 <div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-image">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img src="../../assets/chef2.png" alt="" style="border-radius: 20px;">
-                        </div>
-                        <div class="col-md-8">
-                            <br>
-                            <h6 style="color: grey;font-weight: bolder;">{{chef.name}}</h6>
-                            
-                        </div>
-                    </div>
-                   <br>
-                </div>
-                <div class="card-text">
-                    <form [formGroup]="ReviewForm">
-                        <div class="form-group">
-                          <label for="FirstName">Your Review :</label>
-                            <textarea formControlName="admin_review" class="form-control" style="height: 200px;border: 1PX solid #22B573;" placeholder="enter Review" id="FirstName" ></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="LastName">Your Rating :</label>
-                              <input type="text" formControlName="admin_rating" style="border: 1PX solid #22B573;" class="form-control" placeholder="Rating" id="FirstName">
-                          </div>
-                          
-                          <div class="row">
-                              <div class="col">
-                                <button type="reset" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close">
-                                    <span aria-hidden="true">Cancel</span>
-                                  </button>
-                              </div>
-                              <div class="col">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm" style="width: 80%;" (click)="update()">Save</button>
-                                  </div>
-                              </div>
-                          </div>
-                         
-                          
-                      </form>
-                </div>
+  <div class="col">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-image">
+          <div class="row">
+            <div class="col-md-4">
+              <img
+                src="../../assets/chef2.png"
+                alt=""
+                style="border-radius: 20px;"
+              />
             </div>
-        </div>
-    </div>
-
-
-
-    <div class="col">
-        <div class="card">
-            <h6 class="card-body" style="color: grey;font-weight: bolder;">Customer Reviews</h6>
-            <hr>
-            <div class="card" *ngFor="let review of chef.reviews">
-                <div class="card-body">
-                    <div class="card-title" style="font-weight: bolder;">
-                        {{review.customer}}
-                    </div>
-                    <div class="card-text">
-                        {{review.review_text}}
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                          <button type="button" class="btn btn-danger btn-sm" style="width: 80%;" aria-label="Close" (click)="Decline(review)">
-                              <span aria-hidden="true">Decline</span>
-                            </button>
-                        </div>
-                        <div class="col">
-                          <div class="form-group">
-                              <button type="button" class="btn btn-success btn-sm" style="width: 80%;" (click)="onSubmit()">Accept</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-8">
+              <br />
+              <h6 style="color: grey; font-weight: bolder;">{{ chef.name }}</h6>
             </div>
+          </div>
+          <br />
         </div>
+        <div class="card-text">
+          <form [formGroup]="ReviewForm">
+            <div class="form-group">
+              <label for="FirstName">Your Review :</label>
+              <textarea
+                formControlName="admin_review"
+                class="form-control"
+                style="height: 200px; border: 1px solid #22b573;"
+                placeholder="enter Review"
+                id="FirstName"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="LastName">Your Rating :</label>
+              <input
+                type="text"
+                formControlName="admin_rating"
+                style="border: 1px solid #22b573;"
+                class="form-control"
+                placeholder="Rating"
+                id="FirstName"
+              />
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <button
+                  type="reset"
+                  class="btn btn-danger btn-sm"
+                  style="width: 80%;"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">Cancel</span>
+                </button>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-sm"
+                    style="width: 80%;"
+                    (click)="update()"
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="col">
+    <div class="card">
+      <h6 class="card-body" style="color: grey; font-weight: bolder;">
+        Customer Reviews
+      </h6>
+      <hr />
+      <div class="card" *ngFor="let review of chef.reviews">
+        <div class="card-body">
+          <div class="card-title" style="font-weight: bolder;">
+            {{ review.customer }}
+          </div>
+          <div class="card-text">
+            {{ review.review_text }}
+          </div>
+          <div class="row">
+            <div class="col">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                style="width: 80%;"
+                aria-label="Close"
+                (click)="Decline(review)"
+              >
+                <span aria-hidden="true">Decline</span>
+              </button>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  style="width: 80%;"
+                  (click)="nlp(review.review_text)"
+                >
+                  Accept
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

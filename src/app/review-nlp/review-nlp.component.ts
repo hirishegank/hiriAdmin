@@ -1,67 +1,80 @@
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from "@angular/fire/firestore";
+import { Router } from "@angular/router";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ReviewServiceService } from "../reviewService.service";
+import { Review } from "../Review";
 
 @Component({
-  selector: 'app-review-nlp',
-  templateUrl: './review-nlp.component.html',
-  styleUrls: ['./review-nlp.component.css']
+  selector: "app-review-nlp",
+  templateUrl: "./review-nlp.component.html",
+  styleUrls: ["./review-nlp.component.css"],
 })
 export class ReviewNlpComponent implements OnInit {
-
   chefid;
   chef;
   sub;
-  ReviewForm : FormGroup;
-  constructor(private _Activatedroute: ActivatedRoute,private fb: FormBuilder,private _router: Router,private afs:AngularFirestore) { }
+  ReviewForm: FormGroup;
+  constructor(
+    private _Activatedroute: ActivatedRoute,
+    private fb: FormBuilder,
+    private _router: Router,
+    private afs: AngularFirestore,
+    private _nlp: ReviewServiceService
+  ) {}
 
   ngOnInit() {
-
-    this.sub = this._Activatedroute.paramMap.subscribe(params => {
+    this.sub = this._Activatedroute.paramMap.subscribe((params) => {
       console.log(params);
-      this.chefid = params.get('chefid');
-      this.afs.collection('chef').doc(this.chefid).snapshotChanges().subscribe(res => {
-        this.chef = res.payload.data();
-        console.log(this.chef);
+      this.chefid = params.get("chefid");
+      this.afs
+        .collection("chef")
+        .doc(this.chefid)
+        .snapshotChanges()
+        .subscribe((res) => {
+          this.chef = res.payload.data();
+          console.log(this.chef);
         });
-
     });
 
-
-
-    
-  this.ReviewForm = this.fb.group({
-    admin_review: ['', [Validators.required]],
-    admin_rating: ['', [Validators.required]],
-  });
-
+    this.ReviewForm = this.fb.group({
+      admin_review: ["", [Validators.required]],
+      admin_rating: ["", [Validators.required]],
+    });
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-  
+
   onBack(): void {
-     this._router.navigate(['review']);
+    this._router.navigate(["review"]);
+  }
+
+  nlp(review) {
+    this._nlp.getReviewStatus(review).subscribe((response: Review) => {
+      console.log(response);
+    });
   }
 
   update() {
     if (this.ReviewForm.valid) {
-      this.afs.collection('chef').doc(this.chefid).update({
+      this.afs.collection("chef").doc(this.chefid).update({
         admin_review: this.ReviewForm.value.admin_review,
         admin_rating: this.ReviewForm.value.admin_rating,
       });
     }
   }
 
-
   Decline(a) {
-    this.afs.collection('chef').doc(this.chefid).collection('reviews', res => res.where('user_id', '==', a.user_id)).add({
-      isDeclined: true
-    });
+    this.afs
+      .collection("chef")
+      .doc(this.chefid)
+      .collection("reviews", (res) => res.where("user_id", "==", a.user_id))
+      .add({
+        isDeclined: true,
+      });
   }
-   
 }
 //isDeclined

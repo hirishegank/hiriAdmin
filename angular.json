@@ -116,6 +116,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hiriAdmin"
+    }
+  },
+  "defaultProject": "hiriAdmin",
+  "cli": {
+    "analytics": false
+  }
 }
