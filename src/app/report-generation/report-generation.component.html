@@ -6,15 +6,15 @@
             <div class="card-body">
                 
             <div class="card-image">
-                <img src="../../assets/chef3.png" style="border-radius: 20px;">
+                <img src="{{Img}}" style="border-radius: 20px;width: 150px;height: 150px;">
             </div><br>
-            <h6 style="color: grey;font-weight: bolder;">Sellaiah Ramasamy</h6><br>
+            <h6 style="color: grey;font-weight: bolder;">{{chef.name}}</h6><br>
             <div class="row">
                 <div class="col">
                     <h6 style="font-weight: bold;">Address</h6>
                 </div>
                 <div class="col">
-                    <h6>No 10, Moor street, Colombo 06</h6>
+                    <h6>{{chef.location}}</h6>
                 </div>
             </div>
 
@@ -23,7 +23,7 @@
                     <h6 style="font-weight: bold;">Phone Number</h6>
                 </div>
                 <div class="col">
-                    <h6>+94779967314</h6>
+                    <h6>{{chef.phoneNo}}</h6>
                 </div>
             </div>
 
@@ -32,7 +32,7 @@
                     <h6 style="font-weight: bold;">NIC</h6>
                 </div>
                 <div class="col">
-                    <h6>960611551V</h6>
+                    <h6>{{chef.NIC}}</h6>
                 </div>
             </div><br>
             <h6 style="font-weight: bold;">Order Details</h6>
@@ -43,7 +43,7 @@
                             <h6>Total Orders</h6>
                         </div>
                         <div class="col">
-                            <h6>300</h6>
+                            <h6>{{Total_orders}}</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -51,7 +51,7 @@
                             <h6>Total Orders Accepted</h6>
                         </div>
                         <div class="col">
-                            <h6>250</h6>
+                            <h6>{{accepted_orders}}</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -59,7 +59,7 @@
                             <h6>Total Orders Declined</h6>
                         </div>
                         <div class="col">
-                            <h6>50</h6>
+                            <h6>{{canceled_orders}}</h6>
                         </div>
                     </div>
                 </div>
@@ -72,16 +72,14 @@
         <div class="card">
             <div class="card-body">
                 <h6 style="font-weight: bolder;">Your Review</h6><br>
-                <h6 style="color: grey;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sed suscipit 
-                    pariatur quod maiores odio eos officia,
-                    quis id nihil, rerum sint recusandae repellat unde non aliquam deserunt at culpa.</h6><br>
+                <h6 style="color: grey;">{{chef.admin_review}}</h6><br>
 
                 <div class="row">
                     <div class="col">
                         <h6 style="font-weight: bolder;">Your Rating</h6>
                     </div>
                     <div class="col">
-                        <h6 style="font-weight: bolder;color: #22B573;">4.0</h6><br>
+                        <h6 style="font-weight: bolder;color: #22B573;">{{chef.admin_rating}}</h6><br>
                     </div>
                 </div>
                
@@ -90,7 +88,7 @@
                         <h6 style="font-weight: bold;">Total Income</h6>
                     </div>
                     <div class="col">
-                        <h6>Rs.300000.00</h6>
+                        <h6>Rs.{{Total_income}}.00</h6>
                     </div>
                 </div>
                 
@@ -101,7 +99,7 @@
                             <h6>Pickup</h6>
                         </div>
                         <div class="col">
-                            <h6>Rs.15000.00</h6>
+                            <h6>Rs.{{pickup_income}}.00</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -109,7 +107,7 @@
                             <h6>Door delivery</h6>
                         </div>
                         <div class="col">
-                            <h6>Rs.10000.00</h6>
+                            <h6>Rs.{{door_delivery_income}}.00</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -117,7 +115,7 @@
                             <h6>Dine in</h6>
                         </div>
                         <div class="col">
-                            <h6>Rs.5000.00</h6>
+                            <h6>Rs.{{dine_in_income}}.00</h6>
                         </div>
                     </div>
                 </div>

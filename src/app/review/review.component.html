@@ -1,4 +1,6 @@
-<h4>Review Management</h4>
+
+<br>
+<h4 style="font-weight: bolder;">Review Management</h4><hr>
 
 <div class="row">
     <div class="col" *ngFor="let chef of chefs">
@@ -10,8 +12,8 @@
                     </div>
                     <div class="col">
                         <div class="card-image">
-                            <img src="../../assets/chef2.png" style="border-radius: 20px;">
-                        </div>
+                            <img src="{{chef.Img}}" style="border-radius: 20px;width: 200px;height: 200px;">
+                        </div><br>
                     </div>
                     <div class="col">
 
@@ -21,7 +23,7 @@
                 <div class="card-title" style="font-weight: bolder;text-align: center;">
                     {{chef.name}}
                 </div>
-               <a [routerLink]="['reviewNlp',chef.id]"><button class="btn btn-sm btn-success" >+ Add review</button></a> 
+               <a [routerLink]="['generation',chef.id]"><button class="btn btn-sm btn-success" style="background-color: #22b573;" >+ Add review</button></a> 
                 <h6>Your review :</h6><br>
                 <div class="card-text">
                    {{chef.admin_review}}

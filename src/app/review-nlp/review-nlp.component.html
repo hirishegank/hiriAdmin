@@ -1,4 +1,4 @@
-<h6 style="margin-top: 100px;">Review Management</h6>
+<h6 style="margin-top: 100px;font-weight: bolder;">Review Management</h6>
 <div class="row">
   <div class="col">
     <div class="card">
@@ -7,9 +7,9 @@
           <div class="row">
             <div class="col-md-4">
               <img
-                src="../../assets/chef2.png"
+                src="{{Img}}"
                 alt=""
-                style="border-radius: 20px;"
+                style="border-radius: 20px;width: 150px;height: 150px;"
               />
             </div>
             <div class="col-md-8">
@@ -44,22 +44,13 @@
             </div>
 
             <div class="row">
-              <div class="col">
-                <button
-                  type="reset"
-                  class="btn btn-danger btn-sm"
-                  style="width: 80%;"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">Cancel</span>
-                </button>
-              </div>
+              
               <div class="col">
                 <div class="form-group">
                   <button
                     type="submit"
                     class="btn btn-success btn-sm"
-                    style="width: 80%;"
+                    style="width: 100%;background-color: #22b573;"
                     (click)="update()"
                   >
                     Save
@@ -79,20 +70,20 @@
         Customer Reviews
       </h6>
       <hr />
-      <div class="card" *ngFor="let review of chef.reviews">
+      <div class="card" *ngFor="let review of reviews">
         <div class="card-body">
           <div class="card-title" style="font-weight: bolder;">
-            {{ review.customer }}
+            {{ review.id }}
           </div>
           <div class="card-text">
             {{ review.review_text }}
-          </div>
+          </div><br>
           <div class="row">
             <div class="col">
               <button
                 type="button"
                 class="btn btn-danger btn-sm"
-                style="width: 80%;"
+                style="width: 60%;background-color: #FF5252;"
                 aria-label="Close"
                 (click)="Decline(review)"
               >
@@ -104,7 +95,7 @@
                 <button
                   type="button"
                   class="btn btn-success btn-sm"
-                  style="width: 80%;"
+                  style="width: 60%;background-color: #22b573;"
                   (click)="nlp(review.review_text)"
                 >
                   Accept

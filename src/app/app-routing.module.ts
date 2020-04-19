@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'Settings', component: SettingsComponent },
   { path: 'overview', component: OverviewComponent },
   { path: 'Review/reviewNlp/:chefid', component: ReviewNlpComponent },
-  { path: 'Reports/generation', component:ReportGenerationComponent}
+  { path: 'Reports/generation/:chefid', component:ReportGenerationComponent}
 ];
 
 @NgModule({
