@@ -1,10 +1,19 @@
 
-  <div class="container-fluid">
+<div *ngIf="!user" style="margin-top: 150px;text-align: center;">
+    <h5 style="font-family:Product Sans;font-weight: bolder;">Welcome To Hiri's Kitchen Admin</h5>
+    <hr>
+    <br>
+    <img src="../../assets/logo.png"><br>
+    <hr>
+</div>
+
+
+  <div class="container-fluid" *ngIf="user">
     <div class="row">
       <nav class="d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky" style="background-color: #22B573;color: white;padding-top: 80px;border-radius: 10px;">
            
-            <div style="padding-left: 30;margin-left: 40px;"> <img src="../../assets/avatar.png" style="border: 5px solid white; border-radius: 100%;"></div>
+            <div  style="padding-left: 30;margin-left: 40px;"> <img src="../../assets/avatar.png" style="border: 5px solid white; border-radius: 100%;"></div>
         
             <h3 class="dash" style="text-align: center;">Hirishigan</h3>  
             <h6 style="text-align: center;">{{date}}</h6>

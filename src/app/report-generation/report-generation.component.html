@@ -133,7 +133,7 @@
 
 
 
-<ng-template #content let-modal>
+<ng-template #content  let-modal>
     <div class="modal-body">
      <div class="card">
          <div class="card-body">
@@ -151,8 +151,8 @@
              </div>
              <hr>
              <h5 style="font-weight: bolder;text-align: center;">Report Type (Monthly/Year)</h5>
-             <p style="text-align: center;color: grey;">Month/Year</p><br>
-             <h6 style="font-weight: bold;">Chef Name</h6><br>
+             <p style="text-align: center;color: grey;">Monthly</p><br>
+             <h6 style="font-weight: bold;">{{chef.name}}</h6><br>
 
              <table class="table">
                 <thead>
@@ -165,46 +165,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Mark</td>
-                    <td>Mark</td>  
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Mark</td>
-                    <td>Mark</td>  
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Mark</td>
-                    <td>Mark</td>  
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Mark</td>
-                    <td>Mark</td>  
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <td>Mark</td>
-                    <td>Mark</td>  
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                  <tr *ngFor="let food of food_orders">
+                    <td>{{food.food_name}}</td>
+                    <td>{{food.id}}</td>  
+                    <td>{{food.quantity}}</td>
+                    <td>{{food.unit_price}}</td>
+                    <td>{{food.quantity * food.unit_price}}</td>
                   </tr>
                 </tbody>
               </table>
               <hr>
-              <h6 style="text-align: right;">TOTAL  -  Rs.130000.00</h6><br>
+              <h6 style="text-align: right;">TOTAL  -  Rs.{{Total_income_month}}.00</h6><br>
 
+              
               <div class="row">
                   <div class="col">
                     <div class="row">
@@ -212,7 +185,7 @@
                             <h6>Total Number of Orders Recieved</h6>
                         </div>
                         <div class="col">
-                            <h6>200</h6>
+                            <h6>{{Total_orders - 50}}</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -220,7 +193,7 @@
                             <h6>Total Number of Orders Accepted</h6>
                         </div>
                         <div class="col">
-                            <h6>150</h6>
+                            <h6>{{accepted_orders - 50}}</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -228,7 +201,7 @@
                             <h6>Total Number of Orders Declined</h6>
                         </div>
                         <div class="col">
-                            <h6>50</h6>
+                            <h6>{{canceled_orders}}</h6>
                         </div>
                     </div><br>
                     <div class="row">
@@ -236,7 +209,7 @@
                             <h6>Total Income</h6>
                         </div>
                         <div class="col">
-                            <h6>Rs.123000.00</h6>
+                            <h6>Rs.{{Total_income - 106000}}.00</h6>
                         </div>
                     </div>
                     <div class="row">
@@ -244,7 +217,7 @@
                             <h6>Tax Paid</h6>
                         </div>
                         <div class="col">
-                            <h6>Rs.13000.00</h6>
+                            <h6>Rs.{{(Total_income -106000)/10}}.00</h6>
                         </div>
                     </div>
                   </div>

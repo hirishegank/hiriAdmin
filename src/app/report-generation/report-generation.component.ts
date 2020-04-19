@@ -1,24 +1,29 @@
+import { from } from 'rxjs';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef,OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import 'firebase/storage';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
+
 
 @Component({
   selector: 'app-report-generation',
   templateUrl: './report-generation.component.html',
   styleUrls: ['./report-generation.component.css']
 })
-export class ReportGenerationComponent implements OnInit {
 
+export class ReportGenerationComponent implements OnInit {
+  
   closeResult: string;
-  constructor(private modalService: NgbModal, private afs: AngularFirestore,private _Activatedroute: ActivatedRoute,private _router: Router,) { }
+  constructor(private modalService: NgbModal, private afs: AngularFirestore, private _Activatedroute: ActivatedRoute, private _router: Router) {
+    
+   }
 
   chefid;
-  chef
+  chef;
   sub;
   Img;
   orders1;
@@ -28,12 +33,14 @@ export class ReportGenerationComponent implements OnInit {
   Total_orders;
   canceled_orders;
   Total_income = 106000;
+  Total_income_month = 0;
   pickup_income = 52000;
   door_delivery_income = 34000;
   dine_in_income = 20000;
   temp1;
   temp2;
   temp3;
+  food_orders = [];
   
   ngOnInit() {
     this.sub = this._Activatedroute.paramMap.subscribe((params) => {
@@ -57,6 +64,7 @@ export class ReportGenerationComponent implements OnInit {
             this.Total_orders = this.orders1.length + 50;
             this.orders1.forEach(r => { 
               this.Total_income = this.Total_income + (r.quantity * r.unit_price);
+              this.Total_income_month = this.Total_income_month + (r.quantity * r.unit_price);
             });
 
             this.afs.collection('orders', res => res.where('chef_id', '==', this.chefid).where('status','==','past')).valueChanges().subscribe(a => {
@@ -95,6 +103,22 @@ export class ReportGenerationComponent implements OnInit {
             });
       
           });
+
+
+          this.afs.collection('orders',res=>res.where('chef_id','==',this.chefid)).snapshotChanges().subscribe(res => {
+            res.forEach(a => {
+              let item: any = a.payload.doc.data();
+              console.log(item.img);
+              item.id = a.payload.doc.id;
+              this.afs.collection('food').doc(item.food_id).get().subscribe(c => {
+                let te = c;
+                item.food_name = te.data().food_name;
+              });
+              this.food_orders.push(item);
+              console.log(item);
+            });
+      
+          });
           
 
         });
@@ -123,5 +147,6 @@ export class ReportGenerationComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
 
 }

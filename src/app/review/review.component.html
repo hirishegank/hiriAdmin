@@ -23,7 +23,7 @@
                 <div class="card-title" style="font-weight: bolder;text-align: center;">
                     {{chef.name}}
                 </div>
-               <a [routerLink]="['generation',chef.id]"><button class="btn btn-sm btn-success" style="background-color: #22b573;" >+ Add review</button></a> 
+               <a [routerLink]="['reviewNlp',chef.id]"><button class="btn btn-sm btn-success" style="background-color: #22b573;" >+ Add review</button></a> 
                 <h6>Your review :</h6><br>
                 <div class="card-text">
                    {{chef.admin_review}}
