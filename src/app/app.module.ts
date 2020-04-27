@@ -27,6 +27,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ReviewComponent } from "./review/review.component";
 import { ReviewNlpComponent } from "./review-nlp/review-nlp.component";
 import { ReportGenerationComponent } from "./report-generation/report-generation.component";
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-daialog.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { ReportGenerationComponent } from "./report-generation/report-generation
     ReviewComponent,
     ReviewNlpComponent,
     ReportGenerationComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -61,7 +64,9 @@ import { ReportGenerationComponent } from "./report-generation/report-generation
     AngularFireAuth,
     AngularFirestore,
     ReviewServiceService,
+    ConfirmationDialogService
   ],
   bootstrap: [AppComponent],
+  entryComponents: [ ConfirmationDialogComponent ],
 })
 export class AppModule {}

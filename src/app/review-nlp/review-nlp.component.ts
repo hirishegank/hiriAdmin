@@ -75,9 +75,9 @@ export class ReviewNlpComponent implements OnInit {
   }
 
   nlp(review) {
-    this._nlp.getReviewStatus(review).subscribe((response: Review) => {
-      console.log(response);
-    });
+   // this._nlp.getReviewStatus(review).subscribe((response: Review) => {
+     // console.log(response);
+   // });
   }
 
   update() {

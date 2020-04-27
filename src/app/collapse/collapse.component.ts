@@ -10,8 +10,8 @@ import { Chart } from 'chart.js';
 })
 export class CollapseComponent implements OnInit {
  
-  BarChart = [];
-  
+  BarChart1 = [];
+  BarChart2 = [];
   popular_chefs = [];
   popular_foods = [];
   orders_of_chefs = [];
@@ -24,14 +24,12 @@ export class CollapseComponent implements OnInit {
 
     this.afs.collection('chef',res => res.limit(6))
     .snapshotChanges().subscribe(serverItems => {
-      this.popular_chefs = [];
-      this.orders_of_chefs = [];
       serverItems.forEach(a => {
         let item:any = a.payload.doc.data();
         item.id = a.payload.doc.id;
         let id: any = a.payload.doc.id;
         
-        this.afs.collection('orders', ref => ref.where('chef_id', '==', id)).valueChanges().subscribe(val => {
+        this.afs.collection('orders', ref => ref.where('chef_id', '==', a.payload.doc.id)).valueChanges().subscribe(val => {
           let temp = val.length + 100;
           this.orders_of_chefs.push(temp);
         });
@@ -43,7 +41,7 @@ export class CollapseComponent implements OnInit {
 
       
     // Bar chart:
-    this.BarChart = new Chart('barChartChef', {
+    this.BarChart1 = new Chart('barChartChef', {
       type: 'bar',
       data: {
         labels: this.popular_chefs,
@@ -77,8 +75,6 @@ export class CollapseComponent implements OnInit {
 
     this.afs.collection('food',res => res.limit(6))
     .snapshotChanges().subscribe(serverItems => {
-      this.popular_chefs = [];
-      this.orders_of_chefs = [];
       serverItems.forEach(a => {
         let item:any = a.payload.doc.data();
         item.id = a.payload.doc.id;
@@ -93,7 +89,7 @@ export class CollapseComponent implements OnInit {
     
 
        //chef
-    this.BarChart = new Chart('barChartFood', {
+    this.BarChart2 = new Chart('barChartFood', {
       type: 'bar',
       data: {
         labels: this.popular_foods,

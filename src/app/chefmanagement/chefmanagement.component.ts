@@ -1,7 +1,9 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ManageChefServiceService } from './../manage-chef-service.service';
 import { FormBuilder,FormControl, FormGroup,Validators,AbstractControl } from '@angular/forms';
 import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ConfirmationDialogService } from '../confirmation-dialog/confirmation-daialog.service';
 
 @Component({
   selector: 'app-chefmanagement',
@@ -11,10 +13,25 @@ import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 })
 export class ChefmanagementComponent implements OnInit {
 
+  chefs = [];
+  b;
   closeResult: string;
   chefForm: FormGroup;
-  constructor(private modalService: NgbModal, private fb: FormBuilder,private manageChef:ManageChefServiceService) { }
+  constructor(private modalService: NgbModal, private fb: FormBuilder,private manageChef:ManageChefServiceService,private afs: AngularFirestore,private confirmationDialogService: ConfirmationDialogService) { }
   ngOnInit() {
+    this.afs.collection('chef').snapshotChanges().subscribe(res => {
+      res.forEach(a => {
+        let item:any = a.payload.doc.data();
+        item.id = a.payload.doc.id;
+        this.afs.collection('orders',re=>re.where('chef_id','==',item.id)).valueChanges().subscribe(a =>{
+          this.b = a;
+          item.orders = this.b.length + 50;
+        });
+        
+        this.chefs.push(item);
+      });
+    });
+
     this.chefForm = this.fb.group({
       fname:  ['', 
         Validators.required
@@ -32,8 +49,18 @@ export class ChefmanagementComponent implements OnInit {
         Validators.required,
       ],
     });
-    this.getChef();
 
+
+  }
+
+  public openConfirmationDialog(id) {
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to delete this chef... ?')
+    .then((confirmed) => this.delete(id))
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
+
+  delete(item) {
+    this.afs.collection('chef').doc(item).delete();
   }
 
   get fname() {
@@ -66,17 +93,6 @@ export class ChefmanagementComponent implements OnInit {
       });
     }
   }
-
-  cheflist;
-
-  getChef = () => {
-    this.manageChef
-      .getchef()
-      .subscribe(res => (this.cheflist = res));
-  }
-
-  deleteChef = data => this.manageChef.deletechef(data);
-
 
 
   open(content) {
