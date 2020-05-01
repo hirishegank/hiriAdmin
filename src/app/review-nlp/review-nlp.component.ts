@@ -16,13 +16,15 @@ import 'firebase/storage';
 })
   
 
-export class ReviewNlpComponent implements OnInit {
+export class ReviewNlpComponent implements OnInit{
   chefid;
   chef;
   sub;
   Img;
   ReviewForm: FormGroup;
   reviews = [];
+  r;
+  s;
   constructor(
     private _Activatedroute: ActivatedRoute,
     private fb: FormBuilder,
@@ -35,6 +37,24 @@ export class ReviewNlpComponent implements OnInit {
     this.sub = this._Activatedroute.paramMap.subscribe((params) => {
       console.log(params);
       this.chefid = params.get("chefid");
+      this.afs.collection('chef').doc(this.chefid).collection('reviews').snapshotChanges().subscribe(s => { 
+        this.r = s;
+        this.r.forEach(element => {
+          this.afs.collection('chef').doc(this.chefid).collection('reviews').doc(element.payload.doc.id).valueChanges().subscribe(t => {
+            this.s = t;
+            console.log(this.s);
+            this.afs.collection('user').doc(this.s.user_id).get().subscribe(p => {
+              let name = p;
+              this.s.name = name.data().name;
+              this.s.id = element.payload.doc.id;
+              console.log(this.s);
+              this.reviews.push(this.s);
+            });
+          });
+          
+          
+        });
+      });
       this.afs
         .collection("chef")
         .doc(this.chefid)
@@ -48,7 +68,7 @@ export class ReviewNlpComponent implements OnInit {
               let name = p;
               item.id = name.data().name;
             });
-            this.reviews.push(item);
+           
             let userStorageRef = firebase.storage().ref().child(this.chef.img);
     userStorageRef.getDownloadURL().then(url => {
       this.Img = url;
@@ -66,18 +86,22 @@ export class ReviewNlpComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
 
   onBack(): void {
     this._router.navigate(["review"]);
   }
 
-  nlp(review) {
-   // this._nlp.getReviewStatus(review).subscribe((response: Review) => {
-     // console.log(response);
-   // });
+  nlp(reviewId,review) {
+    console.log(reviewId);
+    this.afs.collection('chef').doc(this.chefid).collection('reviews').doc(reviewId).update({
+      isAccepted: true
+    });
+    this._nlp.getReviewStatus(review).subscribe((response: Review) => {
+      console.log(response);
+      this.afs.collection('chef').doc(this.chefid).update({
+        rating : 4.0
+      });
+    });
   }
 
   update() {
@@ -91,20 +115,10 @@ export class ReviewNlpComponent implements OnInit {
 
   Decline(a) {
     console.log(a);
-    a.status = 'decline';
-    let removed = [];
-    var f = 0;
-    this.reviews.forEach(b => {
-      if (f != 1) {
-        let item: any = b;
-        item.status = 'done';
-        removed.push(item);
-        f = f + 1;
-      }
-    });
-    this.afs.collection("chef").doc(this.chefid).update({
-      "reviews": removed
-    });
+    this.afs.collection('chef').doc(this.chefid).collection('reviews').doc(a).delete();
   }
+  
 }
 //isDeclined
+
+
