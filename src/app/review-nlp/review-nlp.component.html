@@ -73,7 +73,7 @@
       <div class="card" *ngFor="let review of reviews">
         <div class="card-body">
           <div class="card-title" style="font-weight: bolder;">
-            {{ review.id }}
+            {{ review.name }}
           </div>
           <div class="card-text">
             {{ review.review_text }}
@@ -85,7 +85,7 @@
                 class="btn btn-danger btn-sm"
                 style="width: 60%;background-color: #FF5252;"
                 aria-label="Close"
-                (click)="Decline(review)"
+                (click)="Decline(review.id)"
               >
                 <span aria-hidden="true">Decline</span>
               </button>
@@ -96,7 +96,7 @@
                   type="button"
                   class="btn btn-success btn-sm"
                   style="width: 60%;background-color: #22b573;"
-                  (click)="nlp(review.review_text)"
+                  (click)="nlp(review.id,review.review_text)"
                 >
                   Accept
                 </button>
